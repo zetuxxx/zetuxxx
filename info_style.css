@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.info-container {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Начальное положение вне экрана */
+    width: 300px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Прозрачно черный фон */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3); /* Тень справа */
+    transition: right 0.5s ease; /* Плавный переход */
+    z-index: 10;
+}
+
+.info-container.show {
+    right: 0; /* Показать контейнер */
+}
+
+.info-content {
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.8); /* Белый цвет текста с прозрачностью */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
