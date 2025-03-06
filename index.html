@@ -15,7 +15,7 @@
             background-size: cover;
             margin: 0;
             overflow: hidden;
-        } 
+        }
         .video-background {
             display: none;
         }
@@ -25,52 +25,35 @@
     <video autoplay muted loop id="backgroundVideo" class="video-background" poster="https://envs.sh/1wG_poster.jpg">
         <source src="https://envs.sh/iw8.MP4" type="video/mp4">
     </video>
+    
     <h1>BIO</h1>
+    
     <div class="navigation">
         <ul>
             <li class="list active">
-                <a href="#">
-                    <span class="icon"><ion-icon name="home"></ion-icon></span>
-                </a>
+                <a href="#"><span class="icon"><ion-icon name="home"></ion-icon></span></a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><ion-icon name="game-controller"></ion-icon></span>
-                </a>
+                <a href="#"><span class="icon"><ion-icon name="game-controller"></ion-icon></span></a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><ion-icon name="person-circle"></ion-icon></span>
-                </a>
+                <a href="#"><span class="icon"><ion-icon name="person-circle"></ion-icon></span></a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><ion-icon name="share-social"></ion-icon></span>
-                </a>
+                <a href="#"><span class="icon"><ion-icon name="share-social"></ion-icon></span></a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><ion-icon name="briefcase"></ion-icon></span>
-                </a>
+                <a href="#"><span class="icon"><ion-icon name="briefcase"></ion-icon></span></a>
             </li>
             <li class="list">
-                <a href="#">
-                    <span class="icon"><ion-icon name="man-outline"></ion-icon></span>
-                </a>
+                <a href="#"><span class="icon"><ion-icon name="man-outline"></ion-icon></span></a>
             </li>
             <li class="list">
-                <a href="#" id="muteToggle">
-                    <span class="icon"><ion-icon name="volume-high"></ion-icon></span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="#" id="muteToggle">
-                </a>    
+                <a href="#" id="muteToggle"><span class="icon"><ion-icon name="volume-high"></ion-icon></span></a>
             </li>
             <div class="indicator"></div>
-            </li>
-            </div>
         </ul>
+    </div>
 
     <div class="info-container">
         <div class="info-content" id="infoContent"></div>
@@ -79,13 +62,6 @@
     <script>
         const video = document.getElementById('backgroundVideo');
         const body = document.body;
-
-        // Отображаем видео только после загрузки
-        video.addEventListener('canplaythrough', () => {
-            video.style.display = 'block';
-            body.style.background = 'none'; // Убираем статичный фон
-        });
-
         const list = document.querySelectorAll('.list');
         const indicator = document.querySelector('.indicator');
         const infoContent = document.getElementById('infoContent');
@@ -93,12 +69,19 @@
         const muteToggle = document.getElementById('muteToggle');
         const volumeIcon = muteToggle.querySelector('ion-icon');
 
+        // Показываем видео после загрузки
+        video.addEventListener('canplaythrough', () => {
+            video.style.display = 'block';
+            body.style.background = 'none'; 
+        });
+
         function setIndicator() {
             const activeItem = document.querySelector('.list.active');
+            if (!activeItem) return;
             const itemRect = activeItem.getBoundingClientRect();
             const navRect = document.querySelector('.navigation').getBoundingClientRect();
             const centerY = itemRect.top - navRect.top + (itemRect.height / 2);
-            indicator.style.top = `${centerY}px`;
+            indicator.style.top = ${centerY}px;
         }
 
         function activeLink() {
@@ -117,8 +100,7 @@
                     content = '<h2>Welcome to Home!</h2>';
                     infoContainer.classList.remove('show');
                     break;
-                case 'game-controller':
-                    content = `<h2>Games</h2>
+                case 'game-controller':content = `<h2>Games</h2>
                                <ul>
                                    <li>Dota 2</li>
                                    <li>CS 2</li>
@@ -150,21 +132,22 @@
                 case 'share-social':
                     content = `<h2>Links to My Social Networks:</h2>
                                <ul>
-                                   <li>My Official UserName Telegram: <a href="https://t.me/zetuxxx">click.</a></li>
-                                   <li>My Telegram Account: <a href="https://t.me/closegameclosegameclosegame">click.</a></li>
-                                   <li>My PlayList: <a href="https://on.soundcloud.com/4hsYEALTHq7Lrydq7">click.</a></li>
+                                   <li><a href="https://t.me/zetuxxx">My Official Telegram</a></li>
+                                   <li><a href="https://t.me/closegameclosegameclosegame">My Telegram Account</a></li>
+                                   <li><a href="https://on.soundcloud.com/4hsYEALTHq7Lrydq7">My PlayList</a></li>
                                </ul>
                                <p>The list will be updated.</p>`;
                     break;
                 case 'briefcase':
                     content = `<h2>Communication with me:</h2>
                                <p>Online: Only Luck (MSK, GMT+3)</p>
-                               <li></li>
                                <p>If you have been ignored for 24 hours - duplicate the message</p>`;
                     break;
                 case 'man-outline':
                     content = `<h2>My Defenders:</h2>
-                               <li><a href="https://t.me/lomkapd">Zyama</a></li>;
+                               <ul>
+                                   <li><a href="https://t.me/lomkapd">Zyama</a></li>
+                               </ul>`;
                     break;
             }
             if (iconName !== 'home') {
@@ -180,10 +163,8 @@
 
         list.forEach((item) => item.addEventListener('click', activeLink));
         window.addEventListener('load', setIndicator);
-
         muteToggle.addEventListener('click', (event) => {
             event.preventDefault();
-            event.stopPropagation();
             toggleMute();
         });
     </script>
