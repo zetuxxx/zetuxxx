@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xyesoskh-bio</title>
+    <link rel="stylesheet" href="background_style.css">
+    <link rel="stylesheet" href="info_style.css">
+    <link rel="stylesheet" href="menu_style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        body {
+            background: url('https://envs.sh/wKY.MP4') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            overflow: hidden;
+        } 
+        .video-background {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="backgroundVideo" class="video-background" poster="https://envs.sh/1wG_poster.jpg">
+        <source src="https://envs.sh/wKY.MP4" type="video/mp4">
+    </video>
+    <h1>BIO</h1>
+    <div class="navigation">
+        <ul>
+            <li class="list active">
+                <a href="#">
+                    <span class="icon"><ion-icon name="home"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="game-controller"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="person-circle"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="share-social"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="briefcase"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon"><ion-icon name="man-outline"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#" id="muteToggle">
+                    <span class="icon"><ion-icon name="volume-high"></ion-icon></span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#" id="muteToggle">
+                </a>    
+            </li>
+            <div class="indicator"></div>
+            </li>
+            </div>
+        </ul>
+
+    <div class="info-container">
+        <div class="info-content" id="infoContent"></div>
+    </div>
+
+    <script>
+        const video = document.getElementById('backgroundVideo');
+        const body = document.body;
+
+        // Отображаем видео только после загрузки
+        video.addEventListener('canplaythrough', () => {
+            video.style.display = 'block';
+            body.style.background = 'none'; // Убираем статичный фон
+        });
+
+        const list = document.querySelectorAll('.list');
+        const indicator = document.querySelector('.indicator');
+        const infoContent = document.getElementById('infoContent');
+        const infoContainer = document.querySelector('.info-container');
+        const muteToggle = document.getElementById('muteToggle');
+        const volumeIcon = muteToggle.querySelector('ion-icon');
+
+        function setIndicator() {
+            const activeItem = document.querySelector('.list.active');
+            const itemRect = activeItem.getBoundingClientRect();
+            const navRect = document.querySelector('.navigation').getBoundingClientRect();
+            const centerY = itemRect.top - navRect.top + (itemRect.height / 2);
+            indicator.style.top = `${centerY}px`;
+        }
+
+        function activeLink() {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+            setIndicator();
+
+            const clickedItem = this.querySelector('.icon ion-icon').getAttribute('name');
+            showInfo(clickedItem);
+        }
+
+        function showInfo(iconName) {
+            let content = '';
+            switch (iconName) {
+                case 'home':
+                    content = '<h2>Welcome to Home!</h2>';
+                    infoContainer.classList.remove('show');
+                    break;
+                case 'game-controller':
+                    content = `<h2>Games</h2>
+                               <ul>
+                                   <li>Dota 2</li>
+                                   <li>CS 2</li>
+                                   <li>Arizona RP</li>
+                                   <li>Brawlhalla</li>
+                               </ul>
+                               <p>The list will be updated...</p>`;
+                    break;
+                case 'person-circle':
+                    content = `<h2>Bio:</h2>
+                               <p>Name: zetuxxx</p>
+                               <ul>
+                                   <li>Age: 17 y.o</li>
+                                   <li>Gender: Male</li>
+                                   <li>Birthdate: 3 February</li>
+                                   <li>Km Name: Vladik Firstbloodik</li>
+                               </ul>
+                               <h3>Hobbies:</h3>
+                               <ul>
+                                   <li>Playing Dota 2</li>
+                                   <li>Trolling ONLY Discord</li>
+                                   <li>Playing Dota 2</li>
+                                   <li>An Attempt To Upgrade TITAN</li>
+                                   <li>Playing Dota 2</li>
+                                   <li>Life for Dota 2</li>
+                               </ul>
+                               <p>The list updated soon...</p>`;
+                    break;
+                case 'share-social':
+                    content = `<h2>Links to My Social Networks:</h2>
+                               <ul>
+                                   <li>My Official UserName Telegram: <a href="https://t.me/zetuxxx">click.</a></li>
+                                   <li>My Telegram Account: <a href="https://t.me/CLOSEGAMECLOSEGAMECLOSEGAME">click.</a></li>
+                                   <li>My PlayList: <a href="https://on.soundcloud.com/4hsYEALTHq7Lrydq7">click.</a></li>
+                               </ul>
+                               <p>The list will be updated.</p>`;
+                    break;
+                case 'briefcase':
+                    content = `<h2>Communication with me:</h2>
+                               <p>Online: Only Luck (MSK, GMT+3)</p>
+                               <li></li>
+                               <p>If you have been ignored for 24 hours - duplicate the message</p>`;
+                    break;
+                case 'man-outline':
+                    content = `<h2>My Defenders:</h2>
+                               <li><a href="https://t.me/xyesoskh">Zyama</a></li>;
+                    break;
+            }
+            if (iconName !== 'home') {
+                infoContent.innerHTML = content;
+                infoContainer.classList.add('show');
+            }
+        }
+
+        function toggleMute() {
+            video.muted = !video.muted;
+            volumeIcon.name = video.muted ? 'volume-mute' : 'volume-high';
+        }
+
+        list.forEach((item) => item.addEventListener('click', activeLink));
+        window.addEventListener('load', setIndicator);
+
+        muteToggle.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            toggleMute();
+        });
+    </script>
+</body>
+</html>
