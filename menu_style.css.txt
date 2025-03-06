@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --clr: #9b00ff; /* Неоновый фиолетовый для иконок */
+    --dark-clr: #000000; /* Черный для фона */
+    --indicator-clr: #ff3d3d; /* Чуть красный для индикатора */
+}
+
+body.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--dark-clr);
+}
+
+.navigation {
+    width: 100px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.3); /* Черный прозрачный фон */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    animation: backgroundAnimation 8s ease infinite; /* Анимация переливающегося фона */
+}
+
+.navigation ul {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.navigation ul li a .icon {
+    position: absolute;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--clr); /* Неоновый фиолетовый для иконок */
+    z-index: 2;
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    color: var(--clr); /* Неоновый фиолетовый для текста меню */
+    font-weight: 400;
+    font-size: 0.62em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.navigation ul li.active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+.indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 61, 61, 0.3); /* Чуть красный для индикатора */
+    border-radius: 50%;
+    border: 6px solid var(--indicator-clr); /* Чуть красный цвет индикатора */
+    transition: 0.5s;
+    transform: translate(-50%, -50%);
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 var(--indicator-clr); /* Чуть красный для стрелки индикатора */
+}
+
+.indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 var(--indicator-clr); /* Чуть красный для стрелки индикатора */
+}
+
+@keyframes backgroundAnimation {
+    0% { background: rgba(0, 0, 0, 0.3); } /* Черный прозрачный */
+    50% { background: rgba(0, 0, 0, 0.6); } /* Менее прозрачный черный */
+    100% { background: rgba(0, 0, 0, 0.3); } /* Черный прозрачный */
+}
